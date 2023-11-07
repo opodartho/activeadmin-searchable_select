@@ -91,7 +91,7 @@
       var options = $.extend(extra || {}, item.data('searchableSelect'));
       var url = item.data('ajaxUrl');
       var selectAll = item.data('selectAll');
-      var clearAll = item.data('selectAll');
+      var clearAll = item.data('clearAll');
 
       if (url) {
         $.extend(options, {
@@ -119,11 +119,10 @@
         sorter = addClearAll
       }
 
-      if (selectAll || clearAll) {
+      if (item.attr('multiple') === 'multiple' && (selectAll || clearAll)) {
         $.extend(options, {sorter: sorter});
       }
 
-      console.log(selectAll);
       item.select2(options);
       item.on('select2:select', handleSelection);
     });
